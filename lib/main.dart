@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_demo/LabelPage.dart';
 
 //导入包
 //应用入口
 void main() => runApp(MyApp());
 
+// 应用结构
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
@@ -26,6 +28,7 @@ class MyApp extends StatelessWidget {
       ),
       // 应用首页路由
       home: MyHomePage(title: 'Flutter Demo Home Page'),
+      routes: {"labelPage": (context) => LabelPage()},
     );
   }
 }
@@ -67,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+// 创建页面，flutter自动调用
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -75,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    // 系统提供的页面脚手架
+    // 系统提供的页面脚手架，自带导航栏，标题，主屏幕body
     return Scaffold(
       //导航栏
       appBar: AppBar(
@@ -111,17 +115,16 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             // 绑定内容为技术
             Text('$_counter', style: Theme.of(context).textTheme.headline4),
-            FlatButton(
+            ElevatedButton(
+              child: Text("跳转"),
               onPressed: () {
-                // Navigator 创建栈进行路由管理，类似ios的navigaitoncontroller
-                // MaterialPageRoute 模态路由，会根据系统自动设置转场动画
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return NewRoute();
-                }));
+                Navigator.pushNamed(context, "labelPage");
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => LabelPage()));
               },
-              child: Text("打开新路由"),
-              textColor: Colors.blue,
-            )
+            ),
           ],
         ),
       ),
@@ -133,17 +136,6 @@ class _MyHomePageState extends State<MyHomePage> {
         // 子组件
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
-}
-
-// 创建一个新路由
-class NewRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("新路由")),
-      body: Center(child: Text("新路由界面")),
     );
   }
 }
