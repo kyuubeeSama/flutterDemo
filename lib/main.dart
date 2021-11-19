@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_demo/LabelPage.dart';
+import 'package:flutter_demo/ButtonPage.dart';
 
 //导入包
 //应用入口
@@ -28,7 +29,10 @@ class MyApp extends StatelessWidget {
       ),
       // 应用首页路由
       home: MyHomePage(title: 'Flutter Demo Home Page'),
-      routes: {"labelPage": (context) => LabelPage()},
+      routes: {
+        "labelPage": (context) => LabelPage(),
+        "buttonPage": (context) => ButtonPage()
+      },
     );
   }
 }
@@ -125,6 +129,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 //         builder: (context) => LabelPage()));
               },
             ),
+            ElevatedButton(
+                child: Text("按钮"),
+                onPressed: () {
+                  Navigator.pushNamed(context, "buttonPage");
+                }),
           ],
         ),
       ),
